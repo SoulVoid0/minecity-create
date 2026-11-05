@@ -36,6 +36,15 @@ FALLBACK = {
     "create:elevator_pulley": "minecraft:iron_block",
     "create:elevator_contact": "minecraft:polished_andesite",
     "create:contraption_controls": "minecraft:lever",
+    "create:mechanical_saw": "minecraft:stonecutter",
+    "create:shaft": "minecraft:chain",
+    "create:mechanical_press": "minecraft:piston",
+    "create:crushing_wheel": "minecraft:polished_andesite",
+    "create:millstone": "minecraft:grindstone",
+    "create:mechanical_mixer": "minecraft:cauldron",
+    "create:deployer": "minecraft:dispenser",
+    "create:fluid_tank": "minecraft:copper_block",
+    "create:tiled_glass": "minecraft:glass",
     # Create Crafts & Additions
     "createaddition:electric_motor": "minecraft:iron_block",
     "createaddition:large_connector": "minecraft:lightning_rod",
@@ -54,6 +63,7 @@ KEEP_PROPS = {
     "minecraft:dispenser": {"facing"}, "minecraft:chest": {"facing"},
     "minecraft:barrel": {"facing"}, "minecraft:lever": {"facing"},
     "minecraft:repeater": {"facing"}, "minecraft:stripped_spruce_wood": {"axis"},
+    "minecraft:chain": {"axis"}, "minecraft:piston": {"facing"},
 }
 FALLBACK_TE = {"minecraft:chest": "minecraft:chest", "minecraft:barrel": "minecraft:barrel"}
 _HORIZONTAL = {"north", "south", "east", "west"}

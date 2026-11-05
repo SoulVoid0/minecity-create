@@ -199,3 +199,268 @@ def miner(level):
 
 
 ALL_LEVELS = {name: range(1, 6) for name in ALL}
+
+
+# ================================================================ generic halls
+def hall(name, folder, hut, level, theme=INDUSTRIAL, W=15, D=15, floors=1, bay=4, plaza=2, decorate=None):
+    """Shared shell for workplace huts: steel/glass hall, entrance south, hut just inside."""
+    b = _base(f"{name}{level}", folder, W, floors * FLOOR_H + 3, D)
+    b.fill(0, 0, 0, W - 1, 0, D - 1, "minecraft:smooth_stone")
+    zf = D - 1 - plaza
+    cx = W // 2
+    kit.tower(b, theme, 0, 0, W - 1, zf, floors, bay=bay, open_front=("south", cx - 1, cx + 1))
+    b.hut(cx, 1, zf - 2, f"minecolonies:blockhut{hut}", facing="south",
+          te_id="minecolonies:enchanter" if hut == "enchanter" else "minecolonies:colonybuilding")
+    _ground_tag(b, cx, zf - 2)
+    if floors > 1:
+        kit.ladder_core(b, 1, 1, 1, floors * FLOOR_H - 1, facing="south")
+    if decorate:
+        decorate(b, level, 1, 1, 1, W - 2, zf - 1)
+    return b
+
+
+def _row(b, x1, z, n, spec, y=1, step=1, **props):
+    for i in range(n):
+        b.set(x1 + i * step, y, z, spec, **props)
+
+
+def _furnaces(b, level, x1, z, y=1):
+    _row(b, x1, z, level + 1, "minecraft:furnace", y=y, facing="south")
+    for i in range(level + 1):
+        b.tes[(x1 + i, y, z)] = {"id": "minecraft:furnace"}
+
+
+def _register_hall(name, folder, hut=None, **kw):
+    def fn(level):
+        return hall(name, folder, hut or name, level, **kw)
+    fn.__name__ = name
+    ALL[name] = fn
+
+
+# ---- craftsmanship: factories
+def _sawmill(b, lvl, x1, y, z1, x2, z2):
+    _row(b, x1 + 1, z1, min(lvl, 4), "create:mechanical_saw", y=y, step=2, facing="up")
+    _row(b, x1 + 1, z1 + 1, min(lvl, 4), "create:shaft", y=y, step=2, axis="x")
+
+
+def _smith(b, lvl, x1, y, z1, x2, z2):
+    _furnaces(b, lvl, x1 + 1, z1)
+    _row(b, x1 + 1, z1 + 2, min(lvl, 3), "minecraft:anvil", y=y, step=2, facing="north")
+    if lvl >= 3:
+        b.set(x2 - 1, y, z1, "create:mechanical_press", facing="south")
+        b.set(x2 - 1, y, z1 + 1, "create:depot")
+
+
+def _mason(b, lvl, x1, y, z1, x2, z2):
+    _row(b, x1 + 1, z1, min(lvl + 1, 5), "minecraft:stonecutter", y=y, step=2, facing="south")
+
+
+def _crusher(b, lvl, x1, y, z1, x2, z2):
+    b.set(x1 + 2, y, z1 + 1, "create:crushing_wheel", axis="y")
+    b.set(x1 + 4, y, z1 + 1, "create:crushing_wheel", axis="y")
+    if lvl >= 3:
+        b.set(x1 + 6, y, z1 + 1, "create:millstone")
+
+
+def _sifter(b, lvl, x1, y, z1, x2, z2):
+    _row(b, x1 + 1, z1, lvl, "minecraft:composter", y=y, step=2)
+
+
+def _mechanic(b, lvl, x1, y, z1, x2, z2):
+    _row(b, x1 + 1, z1, lvl, "minecraft:hopper", y=y, step=2, facing="down")
+    b.set(x2 - 1, y, z1, "create:mechanical_mixer")
+    b.set(x2 - 1, y + 2, z1 + 2, "create:deployer", facing="down")
+
+
+def _glass(b, lvl, x1, y, z1, x2, z2):
+    _furnaces(b, lvl, x1 + 1, z1)
+    _row(b, x1 + 1, z1 + 2, 3, "create:tiled_glass", y=y, step=1)
+
+
+def _dyer(b, lvl, x1, y, z1, x2, z2):
+    _row(b, x1 + 1, z1, lvl, "minecraft:cauldron", y=y, step=2)
+
+
+def _concrete(b, lvl, x1, y, z1, x2, z2):
+    # mixer needs water source blocks inside the building
+    for i in range(lvl):
+        b.set(x1 + 1 + i * 2, y - 1, z1 + 1, "minecraft:water")
+        b.set(x1 + 1 + i * 2, y, z1 + 1, "minecraft:air")
+    b.set(x2 - 1, y, z1, "create:mechanical_mixer")
+
+
+def _fletcher(b, lvl, x1, y, z1, x2, z2):
+    _row(b, x1 + 1, z1, lvl, "minecraft:fletching_table", y=y, step=2)
+
+
+def _smeltery(b, lvl, x1, y, z1, x2, z2):
+    _furnaces(b, lvl + 1, x1 + 1, z1)
+    b.set(x2 - 1, y, z1, "create:fluid_tank")
+    b.set(x2 - 1, y + 1, z1, "create:fluid_tank")
+
+
+def _baker(b, lvl, x1, y, z1, x2, z2):
+    _furnaces(b, lvl, x1 + 1, z1)
+    _row(b, x1 + 1, z1 + 2, 3, "minecraft:smooth_quartz_slab", y=y, type="bottom")
+
+
+def _alchemist(b, lvl, x1, y, z1, x2, z2):
+    _row(b, x1 + 1, z1, lvl, "minecraft:brewing_stand", y=y, step=2)
+    for i in range(lvl):
+        b.tes[(x1 + 1 + i * 2, y, z1)] = {"id": "minecraft:brewing_stand"}
+        b.set(x1 + 1 + i * 2, y - 1, z1 + 2, "minecraft:soul_sand")
+    _row(b, x1 + 1, z1 + 4, lvl, "minecraft:oak_leaves", y=y + 2, step=2, persistent=True)
+
+
+for _n, _f, _deco in [
+    ("sawmill", "craftsmanship/carpentry", _sawmill),
+    ("fletcher", "craftsmanship/carpentry", _fletcher),
+    ("blacksmith", "craftsmanship/metallurgy", _smith),
+    ("mechanic", "craftsmanship/metallurgy", _mechanic),
+    ("smeltery", "craftsmanship/metallurgy", _smeltery),
+    ("stonemason", "craftsmanship/masonry", _mason),
+    ("crusher", "craftsmanship/masonry", _crusher),
+    ("sifter", "craftsmanship/masonry", _sifter),
+    ("stonesmeltery", "craftsmanship/masonry", _smeltery),
+    ("glassblower", "craftsmanship/luxury", _glass),
+    ("dyer", "craftsmanship/luxury", _dyer),
+    ("concretemixer", "craftsmanship/luxury", _concrete),
+    ("baker", "craftsmanship/luxury", _baker),
+    ("alchemist", "craftsmanship/luxury", _alchemist),
+]:
+    _register_hall(_n, _f, decorate=_deco, floors=1)
+
+
+# ---- food, health, education (multi-storey civic buildings)
+def _cook(b, lvl, x1, y, z1, x2, z2):
+    _furnaces(b, lvl, x1 + 1, z1)
+    for i in range(2 + lvl):
+        x = x1 + 1 + (i % 4) * 3
+        z = z1 + 4 + (i // 4) * 3
+        if x <= x2 - 1 and z <= z2 - 2:
+            b.set(x, y, z, "create:white_seat")
+            b.tag(x, y, z, "sit")
+
+
+def _hospital(b, lvl, x1, y, z1, x2, z2):
+    for i in range(lvl + 1):
+        b.bed(x1 + 1 + i * 2, y, z1, facing="north", color="white")
+
+
+def _library(b, lvl, x1, y, z1, x2, z2):
+    for i in range(lvl * 4):
+        b.set(x1 + 1 + (i % 10), y + (i // 10) % 3, z1, "minecraft:bookshelf")
+
+
+def _school(b, lvl, x1, y, z1, x2, z2):
+    for i in range(lvl * 2):
+        x = x1 + 1 + (i % 5) * 2
+        z = z1 + 2 + (i // 5) * 2
+        if z <= z2 - 2:
+            b.set(x, y, z, "minecraft:light_blue_carpet")
+            b.tag(x, y, z, "sit")
+
+
+def _tavern(b, lvl, x1, y, z1, x2, z2):
+    for i in range(min(lvl, 3) + 1):
+        b.bed(x1 + 1 + i * 2, y, z1, facing="north", color="red")
+    _cook(b, lvl, x1, y, z1 + 3, x2, z2)
+
+
+for _n, _f, _deco, _fl in [
+    ("cook", "fundamentals", _cook, 1),
+    ("hospital", "fundamentals", _hospital, 1),
+    ("tavern", "fundamentals", _tavern, 1),
+    ("library", "education", _library, 2),
+    ("school", "education", _school, 1),
+    ("university", "education", _library, 2),
+]:
+    _register_hall(_n, _f, decorate=_deco, floors=_fl, theme=OFFICE, W=17, D=17)
+
+
+# ---- agriculture
+def _farm(b, lvl, x1, y, z1, x2, z2):
+    for i in range(lvl * 2):
+        b.set(x1 + 1 + i, y - 1, z1 + 1, "minecraft:farmland", moisture=7)
+        b.set(x1 + 1 + i, y, z1 + 1, "minecraft:air")
+    b.set(x1, y - 1, z1 + 1, "minecraft:water")
+
+
+def _composter(b, lvl, x1, y, z1, x2, z2):
+    for i in range(lvl):
+        b.set(x1 + 1 + i * 2, y, z1, "minecolonies:barrel_block", facing="south", te={"id": "minecolonies:barrel"})
+
+
+def _florist(b, lvl, x1, y, z1, x2, z2):
+    for i in range(lvl * 2):
+        b.set(x1 + 1 + i, y - 1, z1 + 1, "minecolonies:composted_dirt")
+        b.set(x1 + 1 + i, y, z1 + 1, "minecraft:air")
+
+
+def _beekeeper(b, lvl, x1, y, z1, x2, z2):
+    for i in range(lvl):
+        b.set(x1 + 1 + i * 2, y, z1, "minecraft:beehive", facing="south", te={"id": "minecraft:beehive"})
+    _row(b, x1 + 1, z1 + 2, lvl * 2, "minecraft:cornflower", y=y)
+
+
+def _pen(b, lvl, x1, y, z1, x2, z2):
+    b.fill(x1, y - 1, z1, x2, y - 1, z1 + 3, "minecraft:grass_block")
+    for x in range(x1, x2 + 1):
+        b.set(x, y, z1 + 4, "minecraft:iron_bars")
+    b.set((x1 + x2) // 2, y, z1 + 4, "minecraft:air")
+
+
+def _fisher(b, lvl, x1, y, z1, x2, z2):
+    b.fill(x1 + 1, y - 1, z1 + 1, x2 - 1, y - 1, z1 + 3, "minecraft:water")
+
+
+def _lumber(b, lvl, x1, y, z1, x2, z2):
+    _row(b, x1 + 1, z1, min(lvl, 4), "create:mechanical_saw", y=y, step=3, facing="up")
+
+
+for _n, _f, _deco in [
+    ("farmer", "agriculture/horticulture", _farm),
+    ("composter", "agriculture/horticulture", _composter),
+    ("florist", "agriculture/horticulture", _florist),
+    ("beekeeper", "agriculture/husbandry", _beekeeper),
+    ("chickenherder", "agriculture/husbandry", _pen),
+    ("cowboy", "agriculture/husbandry", _pen),
+    ("shepherd", "agriculture/husbandry", _pen),
+    ("swineherder", "agriculture/husbandry", _pen),
+    ("rabbithutch", "agriculture/husbandry", _pen),
+    ("fisherman", "agriculture/husbandry", _fisher),
+    ("lumberjack", "fundamentals", _lumber),
+]:
+    _register_hall(_n, _f, decorate=_deco, theme=RESIDENTIAL if "husbandry" in _f else INDUSTRIAL)
+
+
+# ---- military
+def _guard(b, lvl, x1, y, z1, x2, z2):
+    b.bed(x1 + 1, y, z1, facing="north", color="gray")
+
+
+def _archery(b, lvl, x1, y, z1, x2, z2):
+    for i in range(lvl):
+        b.set(x1 + 1 + i * 2, y, z1, "minecraft:target")
+        b.set(x1 + 1 + i * 2, y, z1 + 5, "minecraft:polished_andesite_slab", type="bottom")
+        b.tag(x1 + 1 + i * 2, y, z1 + 5, "work")
+    b.set(x2 - 1, y, z1, "minecraft:glowstone")
+
+
+def _academy(b, lvl, x1, y, z1, x2, z2):
+    for i in range(lvl):
+        b.set(x1 + 1 + i * 2, y, z1, "minecraft:hay_block", axis="y")
+        b.set(x1 + 1 + i * 2, y + 1, z1, "minecraft:carved_pumpkin", facing="south")
+
+
+for _n, _f, _deco, _fl in [
+    ("guardtower", "military", _guard, 3),
+    ("archery", "military", _archery, 1),
+    ("combatacademy", "military", _academy, 1),
+]:
+    _register_hall(_n, _f, decorate=_deco, floors=_fl,
+                   theme=INDUSTRIAL, W=11 if _n == "guardtower" else 15, D=11 if _n == "guardtower" else 15)
+
+# ---- mystic
+_register_hall("enchanter", "mystic", decorate=_library, theme=OFFICE, hut="enchanter")
+ALL_LEVELS = {name: range(1, 6) for name in ALL}

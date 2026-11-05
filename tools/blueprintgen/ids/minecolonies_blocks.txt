@@ -1,3 +1,4 @@
+barrel_block
 blockhutalchemist
 blockhutarchery
 blockhutbaker
@@ -51,3 +52,4 @@ blockhuttownhall
 blockhutuniversity
 blockhutwarehouse
 blockminecoloniesrack
+composted_dirt

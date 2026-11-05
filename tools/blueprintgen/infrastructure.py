@@ -223,3 +223,32 @@ def street_furniture():
 def all_blueprints():
     for fn in OUT:
         yield from fn()
+
+
+# ---------------------------------------------------------------- farm fields
+@infra
+def fields():
+    """Greenhouse crop fields with a scarecrow (field hut) in the middle, assigned to a farmer."""
+    out = []
+    for name, size in (("greenhouse_small", 9), ("greenhouse", 11), ("greenhouse_large", 15)):
+        b = Blueprint(name=name, folder="infrastructure/fields", sx=size, sy=7, sz=size)
+        c = size // 2
+        b.fill(0, 0, 0, size - 1, 0, size - 1, "minecraft:smooth_stone")
+        b.fill(1, 0, 1, size - 2, 0, size - 2, "minecraft:dirt")
+        b.fill(0, 1, 0, size - 1, 5, size - 1, AIR)
+        for (x, z) in kit._perimeter(0, 0, size - 1, size - 1):
+            for y in range(1, 5):
+                b.set(x, y, z, "minecraft:glass")
+            b.set(x, 5, z, "minecraft:iron_block" if (x + z) % 4 == 0 else "minecraft:glass")
+        b.fill(1, 6, 1, size - 2, 6, size - 2, "minecraft:glass")
+        for x in range(2, size - 2, 4):
+            b.set(x, 6, c, "minecraft:sea_lantern")
+        for y in (1, 2):
+            b.set(c, y, 0, AIR)
+        b.set(c, 0, c, "minecraft:water")
+        b.set(c, 1, c, "minecolonies:blockhutfield", half="lower", facing="south",
+              te={"id": "minecolonies:scarecrow", "Item": __import__("nbtlib").String("")})
+        b.set(c, 0, c, "minecraft:smooth_stone")
+        b.set(c + 1, 0, c, "minecraft:water")
+        out.append(b)
+    return out
