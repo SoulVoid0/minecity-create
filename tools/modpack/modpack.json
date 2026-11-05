@@ -1,0 +1,361 @@
+{
+ "minecraft": "1.21.1",
+ "loader": "neoforge",
+ "mods": [
+  {
+   "name": "Create",
+   "slug": "create",
+   "version": "6.0.10+mc1.21.1",
+   "file": "create-1.21.1-6.0.10.jar",
+   "url": "https://cdn.modrinth.com/data/LNytGWDc/versions/UjX6dr61/create-1.21.1-6.0.10.jar",
+   "sha1": "0e97e49837bed766e6f28a4c95b04885d6acc353"
+  },
+  {
+   "name": "Applied Energistics 2",
+   "slug": "ae2",
+   "version": "19.2.18",
+   "file": "appliedenergistics2-19.2.18.jar",
+   "url": "https://cdn.modrinth.com/data/XxWD5pD3/versions/KDnFUmMm/appliedenergistics2-19.2.18.jar",
+   "sha1": "bcd04bc7f181b2ffa314625f284c8eca6fee7fe4"
+  },
+  {
+   "name": "Create Crafts & Additions",
+   "slug": "createaddition",
+   "version": "neoforge-1.21.1-1.7.2",
+   "file": "createaddition-1.7.2.jar",
+   "url": "https://cdn.modrinth.com/data/kU1G12Nn/versions/hsjVajlP/createaddition-1.7.2.jar",
+   "sha1": "8e7158d3144b1ee97e58092fe006675b0e09f6d8"
+  },
+  {
+   "name": "Macaw's Windows",
+   "slug": "macaws-windows",
+   "version": "2.4.2",
+   "file": "mcw-mcwwindows-2.4.2-mc1.21.1neoforge.jar",
+   "url": "https://cdn.modrinth.com/data/C7I0BCni/versions/rQUE4LCz/mcw-mcwwindows-2.4.2-mc1.21.1neoforge.jar",
+   "sha1": "eb1d3c118acb450cc2fe14c2ce7ce247a1bca60c"
+  },
+  {
+   "name": "Macaw's Roofs",
+   "slug": "macaws-roofs",
+   "version": "2.3.2",
+   "file": "mcw-roofs-2.3.2-mc1.21.1neoforge.jar",
+   "url": "https://cdn.modrinth.com/data/B8jaH3P1/versions/jiXRXiSt/mcw-roofs-2.3.2-mc1.21.1neoforge.jar",
+   "sha1": "05806ff152fab56f7c1b4b215d772ea73611283d"
+  },
+  {
+   "name": "Macaw's Lights and Lamps",
+   "slug": "macaws-lights-and-lamps",
+   "version": "1.1.5",
+   "file": "mcw-lights-1.1.5-mc1.21.1neoforge.jar",
+   "url": "https://cdn.modrinth.com/data/w4an97C2/versions/5U2kQZIL/mcw-lights-1.1.5-mc1.21.1neoforge.jar",
+   "sha1": "13c1107caf26b2c60d8626b3658b26cc7f634b38"
+  },
+  {
+   "name": "Macaw's Bridges",
+   "slug": "macaws-bridges",
+   "version": "3.1.2",
+   "file": "mcw-bridges-3.1.2-mc1.21.1neoforge.jar",
+   "url": "https://cdn.modrinth.com/data/GURcjz8O/versions/aQ7rY7ng/mcw-bridges-3.1.2-mc1.21.1neoforge.jar",
+   "sha1": "71ece28129789a2123cf07e79938f488d8675bb2"
+  },
+  {
+   "name": "Macaw's Paths and Pavings",
+   "slug": "macaws-paths-and-pavings",
+   "version": "1.1.1",
+   "file": "mcw-mcwpaths-1.1.1-mc1.21.1neoforge.jar",
+   "url": "https://cdn.modrinth.com/data/VRLhWB91/versions/tlymsxUG/mcw-mcwpaths-1.1.1-mc1.21.1neoforge.jar",
+   "sha1": "4bb7e1d28eef19f87438881b0f582a15297b95ae"
+  },
+  {
+   "name": "Macaw's Doors",
+   "slug": "macaws-doors",
+   "version": "1.1.5",
+   "file": "mcw-doors-1.1.5-mc1.21.1neoforge.jar",
+   "url": "https://cdn.modrinth.com/data/kNxa8z3e/versions/u7BRX44F/mcw-doors-1.1.5-mc1.21.1neoforge.jar",
+   "sha1": "c127904f23db1a641dd9e065ec51c5c177cb4cd7"
+  },
+  {
+   "name": "Macaw's Fences and Walls",
+   "slug": "macaws-fences-and-walls",
+   "version": "1.2.1",
+   "file": "mcw-mcwfences-1.2.1-mc1.21.1neoforge.jar",
+   "url": "https://cdn.modrinth.com/data/GmwLse2I/versions/jVdb0r4W/mcw-mcwfences-1.2.1-mc1.21.1neoforge.jar",
+   "sha1": "b5580c3fc521ed8bf4db3e407bd590efc317f74d"
+  },
+  {
+   "name": "Macaw's Furniture",
+   "slug": "macaws-furniture",
+   "version": "3.4.1",
+   "file": "mcw-furniture-3.4.1-mc1.21.1neoforge.jar",
+   "url": "https://cdn.modrinth.com/data/dtWC90iB/versions/Z5V3Ps7S/mcw-furniture-3.4.1-mc1.21.1neoforge.jar",
+   "sha1": "3dccc819f14bcc60b3683edd82ca8c5e64964229"
+  },
+  {
+   "name": "Macaw's Stairs",
+   "slug": "macaws-stairs",
+   "version": "1.0.2",
+   "file": "mcw-mcwstairs-1.0.2-mc1.21.1neoforge.jar",
+   "url": "https://cdn.modrinth.com/data/iP3wH1ha/versions/4t8L0dGP/mcw-mcwstairs-1.0.2-mc1.21.1neoforge.jar",
+   "sha1": "1ee43d693c821efc955a74e551f94372af90a140"
+  },
+  {
+   "name": "Macaw's Trapdoors",
+   "slug": "macaws-trapdoors",
+   "version": "1.1.5",
+   "file": "mcw-trapdoors-1.1.5-mc1.21.1neoforge.jar",
+   "url": "https://cdn.modrinth.com/data/n2fvCDlM/versions/StnP0RNi/mcw-trapdoors-1.1.5-mc1.21.1neoforge.jar",
+   "sha1": "1f8b59e31f889f53b6296b42ee09d447e7e56620"
+  },
+  {
+   "name": "Chipped",
+   "slug": "chipped",
+   "version": "4.0.2",
+   "file": "chipped-neoforge-1.21.1-4.0.2.jar",
+   "url": "https://cdn.modrinth.com/data/BAscRYKm/versions/eqVowbGc/chipped-neoforge-1.21.1-4.0.2.jar",
+   "sha1": "6f5395f58139802edfde7cb9170279f92f291971"
+  },
+  {
+   "name": "[UNOFFICIAL] TaCZ 1.21.1 NeoForge Port",
+   "slug": "tacz-1.21.1",
+   "version": "1.1.8-hotfix-r7",
+   "file": "tacz-neoforge-1.21.1-1.1.8-hotfix-r7.jar",
+   "url": "https://cdn.modrinth.com/data/OypNE65K/versions/62q6mB5Q/tacz-neoforge-1.21.1-1.1.8-hotfix-r7.jar",
+   "sha1": "c6ef4976de69a46c4e267bd7f91c730d2dc43a4e"
+  },
+  {
+   "name": "Cold Sweat",
+   "slug": "cold-sweat",
+   "version": "2.4.5",
+   "file": "ColdSweat-2.4.5.jar",
+   "url": "https://cdn.modrinth.com/data/uXhSmPjd/versions/LTu4f6QB/ColdSweat-2.4.5.jar",
+   "sha1": "4e598de6bb2d792ac3855bee445081c9456b613b"
+  },
+  {
+   "name": "Create: The Factory Must Grow",
+   "slug": "create-tfmg",
+   "version": "1.2.0",
+   "file": "tfmg-1.2.0.jar",
+   "url": "https://cdn.modrinth.com/data/USgVjXsk/versions/uDi14nbt/tfmg-1.2.0.jar",
+   "sha1": "b520f3687f60a69eb265ff5b9a16759b9e124103"
+  },
+  {
+   "name": "Extended AE",
+   "slug": "extended-ae",
+   "version": "1.21-2.2.35-neoforge",
+   "file": "ExtendedAE-1.21-2.2.35-neoforge.jar",
+   "url": "https://cdn.modrinth.com/data/JiOqfoFM/versions/bC302UUP/ExtendedAE-1.21-2.2.35-neoforge.jar",
+   "sha1": "e3521ca2567fabe0f0131cc923ec94dd99d6fa7b"
+  },
+  {
+   "name": "Create: Diesel Generators",
+   "slug": "create-diesel-generators",
+   "version": "1.21.1-1.3.15",
+   "file": "createdieselgenerators-1.21.1-1.3.15.jar",
+   "url": "https://cdn.modrinth.com/data/ZM3tt6p1/versions/UoPH8lO1/createdieselgenerators-1.21.1-1.3.15.jar",
+   "sha1": "7f751dabfa83c141c1d13025cd16f06553ba459b"
+  },
+  {
+   "name": "Create: Radars",
+   "slug": "create-radars",
+   "version": "5.0.3-1.21.1",
+   "file": "create_radar-5.0.3-1.21.1.jar",
+   "url": "https://cdn.modrinth.com/data/BLu2Yqfq/versions/q723aMHO/create_radar-5.0.3-1.21.1.jar",
+   "sha1": "b882aa5a868298bc39196489526d6e2414c050ea"
+  },
+  {
+   "name": "Create Nuclear",
+   "slug": "createnuclear",
+   "version": "2.0.0",
+   "file": "createnuclear-2.0.0-neoforge.jar",
+   "url": "https://cdn.modrinth.com/data/z611fdf7/versions/TANOhO2C/createnuclear-2.0.0-neoforge.jar",
+   "sha1": "1e635e4d1d4f636d3f07f17f4fe178e567de128c"
+  },
+  {
+   "name": "Steam 'n' Rails Neoforge",
+   "slug": "create-steam-n-rails-1.21.1",
+   "version": "0.2.1+neoforge-mc1.21.1",
+   "file": "railways-0.2.1+neoforge-mc1.21.1.jar",
+   "url": "https://cdn.modrinth.com/data/L3Jv0QZI/versions/HOPX5oro/railways-0.2.1%2Bneoforge-mc1.21.1.jar",
+   "sha1": "f2d71927ef504b597a6c992d02118c1e6ee6e369"
+  },
+  {
+   "name": "Create Ore Excavation",
+   "slug": "create-ore-excavation",
+   "version": "1.21.1-1.6.8",
+   "file": "createoreexcavation-1.21-1.6.8.jar",
+   "url": "https://cdn.modrinth.com/data/ResbpANg/versions/tivxiPTo/createoreexcavation-1.21-1.6.8.jar",
+   "sha1": "9a76b86ec7470d4bd7332f22d6e50a3693098c10"
+  },
+  {
+   "name": "Applied Create",
+   "slug": "applied-create",
+   "version": "1.1.8",
+   "file": "appliedcreate-1.21.1-1.1.8.jar",
+   "url": "https://cdn.modrinth.com/data/XmZgyZzj/versions/rqrW3P8C/appliedcreate-1.21.1-1.1.8.jar",
+   "sha1": "0c2ba09e5828c6389ce1634d8e48313891a45015"
+  },
+  {
+   "name": "Applied Generators",
+   "slug": "applied-generators",
+   "version": "0.3.1+1.21.1",
+   "file": "applied-generators-0.3.1+1.21.1.jar",
+   "url": "https://cdn.modrinth.com/data/y1qmWFWM/versions/NwKr5XcG/applied-generators-0.3.1%2B1.21.1.jar",
+   "sha1": "a7416e623cbcc4775714624069d76ff83c9aac49"
+  },
+  {
+   "name": "MEGA Cells",
+   "slug": "mega",
+   "version": "4.11.0",
+   "file": "megacells-4.11.0.jar",
+   "url": "https://cdn.modrinth.com/data/jjuIRIVr/versions/RPG4EriK/megacells-4.11.0.jar",
+   "sha1": "ba6fe208a9172df1c68815fac7b0145f8052853b"
+  },
+  {
+   "name": "Applied Flux",
+   "slug": "appflux",
+   "version": "1.21-2.1.5-neoforge",
+   "file": "AppliedFlux-1.21-2.1.5-neoforge.jar",
+   "url": "https://cdn.modrinth.com/data/oMgZ004U/versions/4x40hq9D/AppliedFlux-1.21-2.1.5-neoforge.jar",
+   "sha1": "a98eeadf414e6b3f6878324a3fbdee3fa5fcdadf"
+  },
+  {
+   "name": "AdvancedAE",
+   "slug": "advancedae",
+   "version": "1.6.12-1.21.1",
+   "file": "AdvancedAE-1.6.12-1.21.1.jar",
+   "url": "https://cdn.modrinth.com/data/rxYaglEe/versions/ablTMAjP/AdvancedAE-1.6.12-1.21.1.jar",
+   "sha1": "9358ccfa5477c7ab1c5ffab6c831e105fe46ecc3"
+  },
+  {
+   "name": "Applied Energistics 2 Wireless Terminals",
+   "slug": "applied-energistics-2-wireless-terminals",
+   "version": "19.5.1",
+   "file": "ae2wtlib-19.5.1.jar",
+   "url": "https://cdn.modrinth.com/data/pNabrMMw/versions/CxSEpEnO/ae2wtlib-19.5.1.jar",
+   "sha1": "b1bee01393b15f1eb0f46d58862ef99234e1d337"
+  },
+  {
+   "name": "Create: New Age",
+   "slug": "create-new-age",
+   "version": "1.2.0+mc1.21.1",
+   "file": "create-new-age-1.2.0+neoforge-mc1.21.1.jar",
+   "url": "https://cdn.modrinth.com/data/FTeXqI9v/versions/IwtuwMZy/create-new-age-1.2.0%2Bneoforge-mc1.21.1.jar",
+   "sha1": "849df57070ffa75c2446b9c460d03f6b49fa089e"
+  },
+  {
+   "name": "Create Big Cannons",
+   "slug": "create-big-cannons",
+   "version": "5.11.7",
+   "file": "createbigcannons-5.11.7+mc.1.21.1.jar",
+   "url": "https://cdn.modrinth.com/data/GWp4jCJj/versions/bOiDu0LS/createbigcannons-5.11.7%2Bmc.1.21.1.jar",
+   "sha1": "c90ee0b2142e2c58d233e150cb3a24c7cb07eb2d"
+  },
+  {
+   "name": "Just Enough Items (JEI)",
+   "slug": "jei",
+   "version": "19.64.0.455",
+   "file": "jei-1.21.1-neoforge-19.64.0.455.jar",
+   "url": "https://cdn.modrinth.com/data/u6dRKJwZ/versions/iv3KiVkE/jei-1.21.1-neoforge-19.64.0.455.jar",
+   "sha1": "f6d6fc08d54c40752926b570a2220471e8c45c1a"
+  },
+  {
+   "name": "GuideME",
+   "slug": "guideme",
+   "version": "21.1.22",
+   "file": "guideme-21.1.22.jar",
+   "url": "https://cdn.modrinth.com/data/Ck4E7v7R/versions/QeYKsstN/guideme-21.1.22.jar",
+   "sha1": "eb2f531c91566a0f119b4b3a3acd927b48b6b27e"
+  },
+  {
+   "name": "Athena",
+   "slug": "athena-ctm",
+   "version": "4.0.6",
+   "file": "athena-neoforge-1.21.1-4.0.6.jar",
+   "url": "https://cdn.modrinth.com/data/b1ZV3DIJ/versions/dJgL278E/athena-neoforge-1.21.1-4.0.6.jar",
+   "sha1": "4bcbdf388bd5e387beca7c627224aac33584b55b"
+  },
+  {
+   "name": "Resourceful Lib",
+   "slug": "resourceful-lib",
+   "version": "3.0.12",
+   "file": "resourcefullib-neoforge-1.21-3.0.12.jar",
+   "url": "https://cdn.modrinth.com/data/G1hIVOrD/versions/x99nCLTm/resourcefullib-neoforge-1.21-3.0.12.jar",
+   "sha1": "24389c8e48ff0e8594e4686b750c494c66a5f8df"
+  },
+  {
+   "name": "Glodium",
+   "slug": "glodium",
+   "version": "1.21-2.2-neoforge",
+   "file": "Glodium-1.21-2.2-neoforge.jar",
+   "url": "https://cdn.modrinth.com/data/UhW5uCKw/versions/pfbmdJ3b/Glodium-1.21-2.2-neoforge.jar",
+   "sha1": "9f61a3162665ad0b37f6f268339ac98097af1a87"
+  },
+  {
+   "name": "Kotlin for Forge",
+   "slug": "kotlin-for-forge",
+   "version": "5.12.0",
+   "file": "kotlinforforge-5.12.0-all.jar",
+   "url": "https://cdn.modrinth.com/data/ordsPcFz/versions/uhJhCT7X/kotlinforforge-5.12.0-all.jar",
+   "sha1": "d10d062caf1aad9aec82d7852f2fee1781735c1f"
+  },
+  {
+   "name": "Geckolib",
+   "slug": "geckolib",
+   "version": "4.9.3",
+   "file": "geckolib-neoforge-1.21.1-4.9.3.jar",
+   "url": "https://cdn.modrinth.com/data/8BmcQJ2H/versions/Grwn5rUB/geckolib-neoforge-1.21.1-4.9.3.jar",
+   "sha1": "5cfe835472a5c5457ae9ac192d9d7b317454d5ac"
+  },
+  {
+   "name": "Ritchie's Projectile Library",
+   "slug": "rpl",
+   "version": "2.1.2",
+   "file": "ritchiesprojectilelib-2.1.2+mc.1.21.1-neoforge.jar",
+   "url": "https://cdn.modrinth.com/data/B3pb093D/versions/hZ6B2Z0x/ritchiesprojectilelib-2.1.2%2Bmc.1.21.1-neoforge.jar",
+   "sha1": "ec2e4996f8bee8714173e603e379fef8a6901765"
+  },
+  {
+   "name": "MezzConfig",
+   "slug": "mezzconfig",
+   "version": "0.6.11",
+   "file": "mezz_config-1.21.1-neoforge-0.6.11-standalone.jar",
+   "url": "https://cdn.modrinth.com/data/7tEfOcA7/versions/sPQlt1iR/mezz_config-1.21.1-neoforge-0.6.11-standalone.jar",
+   "sha1": "d67b0773b42442a5353d40394479fa760fe9d486"
+  },
+  {
+   "name": "minecolonies",
+   "slug": "minecolonies",
+   "version": "1.1.1403-1.21.1",
+   "file": "minecolonies-1.1.1403-1.21.1.jar",
+   "url": "https://ldtteam.jfrog.io/artifactory/ldtteam/com/ldtteam/minecolonies/1.1.1403-1.21.1/minecolonies-1.1.1403-1.21.1.jar"
+  },
+  {
+   "name": "structurize",
+   "slug": "structurize",
+   "version": "1.0.832-1.21.1",
+   "file": "structurize-1.0.832-1.21.1.jar",
+   "url": "https://ldtteam.jfrog.io/artifactory/ldtteam/com/ldtteam/structurize/1.0.832-1.21.1/structurize-1.0.832-1.21.1.jar"
+  },
+  {
+   "name": "blockui",
+   "slug": "blockui",
+   "version": "1.0.209-1.21.1",
+   "file": "blockui-1.0.209-1.21.1.jar",
+   "url": "https://ldtteam.jfrog.io/artifactory/ldtteam/com/ldtteam/blockui/1.0.209-1.21.1/blockui-1.0.209-1.21.1.jar"
+  },
+  {
+   "name": "domum_ornamentum",
+   "slug": "domum_ornamentum",
+   "version": "1.0.231",
+   "file": "domum-ornamentum-1.0.231-main.jar",
+   "url": "https://ldtteam.jfrog.io/artifactory/mods-maven/com/ldtteam/domum-ornamentum/1.0.231/domum-ornamentum-1.0.231-main.jar"
+  },
+  {
+   "name": "multipiston",
+   "slug": "multipiston",
+   "version": "1.2.58-1.21.1",
+   "file": "multipiston-1.2.58-1.21.1.jar",
+   "url": "https://ldtteam.jfrog.io/artifactory/ldtteam/com/ldtteam/multipiston/1.2.58-1.21.1/multipiston-1.2.58-1.21.1.jar"
+  }
+ ]
+}

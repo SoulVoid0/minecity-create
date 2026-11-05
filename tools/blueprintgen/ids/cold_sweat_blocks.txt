@@ -1,0 +1,9 @@
+boiler
+hearth_bottom
+hearth_top
+icebox
+minecart_insulation
+sewing_table
+smokestack
+soul_stalk
+thermolith

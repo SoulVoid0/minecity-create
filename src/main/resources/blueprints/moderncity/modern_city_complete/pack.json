@@ -1,0 +1,43 @@
+{
+  "name": "Modern City Complete",
+  "icon": "icon.png",
+  "authors": [
+    "SoulVoid0"
+  ],
+  "desc": "Modern City with every supported mod: Macaw's, Chipped, TFMG, Diesel Generators, Create Nuclear, Radars, Steam 'n' Rails, Ore Excavation, ExtendedAE, MEGA, AdvancedAE, Applied Create/Generators/Flux, TaCZ, Cold Sweat. Adds power plants, data center, radar, armory, rail station, bridges, skyscraper, mall.",
+  "mods": [
+    "structurize",
+    "advanced_ae",
+    "ae2",
+    "appflux",
+    "appgen",
+    "appliedcreate",
+    "chipped",
+    "cold_sweat",
+    "create",
+    "create_new_age",
+    "create_radar",
+    "createaddition",
+    "createdieselgenerators",
+    "createnuclear",
+    "createoreexcavation",
+    "extendedae",
+    "mcwbridges",
+    "mcwdoors",
+    "mcwfences",
+    "mcwfurnitures",
+    "mcwlights",
+    "mcwpaths",
+    "mcwroofs",
+    "mcwstairs",
+    "mcwtrpdoors",
+    "mcwwindows",
+    "megacells",
+    "minecolonies",
+    "railways",
+    "tacz",
+    "tfmg"
+  ],
+  "version": 1,
+  "pack-format": 1
+}

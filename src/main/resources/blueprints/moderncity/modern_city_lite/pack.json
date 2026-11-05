@@ -1,0 +1,14 @@
+{
+  "name": "Modern City Lite",
+  "icon": "icon.png",
+  "authors": [
+    "SoulVoid0"
+  ],
+  "desc": "Modern City using only Minecraft + MineColonies blocks. Works in any modpack; functional Create/AE2 machinery is replaced by look-alike vanilla blocks.",
+  "mods": [
+    "structurize",
+    "minecolonies"
+  ],
+  "version": 1,
+  "pack-format": 1
+}

@@ -1,0 +1,17 @@
+adv_pattern_provider
+data_entangler
+quantum_accelerator
+quantum_alloy_block
+quantum_alloy_slab
+quantum_alloy_stairs
+quantum_alloy_wall
+quantum_core
+quantum_crafter
+quantum_infusion_block
+quantum_multi_threader
+quantum_storage_128
+quantum_storage_256
+quantum_structure
+quantum_unit
+reaction_chamber
+small_adv_pattern_provider

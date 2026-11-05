@@ -1,0 +1,17 @@
+{
+  "name": "Modern City",
+  "icon": "icon.png",
+  "authors": [
+    "SoulVoid0"
+  ],
+  "desc": "Modular modern city: glass towers, apartments with Create elevators, steel factories, AE2 data rooms, power grid, roads and street lights.",
+  "mods": [
+    "structurize",
+    "ae2",
+    "create",
+    "createaddition",
+    "minecolonies"
+  ],
+  "version": 1,
+  "pack-format": 1
+}

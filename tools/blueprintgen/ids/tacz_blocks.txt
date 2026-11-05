@@ -1,0 +1,6 @@
+gun_smith_table
+statue
+target
+workbench_a
+workbench_b
+workbench_c
