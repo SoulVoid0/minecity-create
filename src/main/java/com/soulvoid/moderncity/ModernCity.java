@@ -30,6 +30,7 @@ public final class ModernCity {
 
     public ModernCity(IEventBus modBus) {
         modBus.addListener(this::commonSetup);
+        net.neoforged.neoforge.common.NeoForge.EVENT_BUS.addListener(SelfTest::onServerStarted);
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {

@@ -62,7 +62,7 @@ def _residence(b, level):
         b.set(x, y + 1, 2, "mcwwindows:oak_blinds", facing="south", part="top", blindsstate="open")
     b.set(5, 1, 10, "mcwfurnitures:light_gray_couch", facing="north", shape="single")
     if level >= 2:
-        b.set(4, 1, 8, "mcwfurnitures:oak_modern_desk", facing="south", connection="single")
+        b.set(4, 1, 8, "mcwfurnitures:oak_modern_desk", facing="north", connection="single")
 
 
 def _townhall(b, level):
@@ -387,7 +387,7 @@ def shopping_mall():
     for f in range(floors):
         y = f * FLOOR_H + 1
         for x in range(2, W - 2, 5):
-            b.set(x, y, 2, "mcwfurnitures:oak_modern_desk", facing="south", connection="single")
+            b.set(x, y, 2, "mcwfurnitures:oak_modern_desk", facing="north", connection="single")
             b.set(x, y + 2, 1, "mcwlights:white_ceiling_light", part="base", lit=True)
     kit.ladder_core(b, 1, 1, 1, floors * FLOOR_H - 1, facing="south")
     for x in range(10, 17):
