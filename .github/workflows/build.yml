@@ -1,0 +1,27 @@
+name: build
+on:
+  push:
+  pull_request:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Regenerate and validate blueprints
+        run: |
+          pip install nbtlib pillow
+          python3 tools/blueprintgen/gen.py --check
+          git diff --exit-code -- src/main/resources/blueprints docs || (echo "::error::generated blueprints are stale, run tools/blueprintgen/gen.py" && exit 1)
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+      - uses: gradle/actions/setup-gradle@v4
+      - run: ./gradlew build --no-daemon
+      - uses: actions/upload-artifact@v4
+        with:
+          name: moderncity-jar
+          path: build/libs/*.jar
