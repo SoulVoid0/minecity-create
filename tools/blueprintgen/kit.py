@@ -7,6 +7,14 @@ from bp import AIR, FILL, KEEP, Blueprint, state
 
 FLOOR_H = 5  # slab + 4 clear blocks
 
+# Which pack is being generated: "full" (Create/AE2/CC&A) or "complete" (every supported mod).
+# The Lite pack is derived from "full" by compat.to_lite().
+TIER = "full"
+
+
+def complete() -> bool:
+    return TIER == "complete"
+
 
 class Theme:
     """Material set for one family of buildings."""
@@ -157,7 +165,11 @@ def elevator(b: Blueprint, x1, z1, y_bottom, y_top, floors_y, door_side="south",
 
 
 def street_light(b: Blueprint, x, y, z, arm="east", height=5):
-    """Modern street lamp: deepslate pole, slab arm, froglight head."""
+    """Modern street lamp: deepslate pole, slab arm, froglight head (Macaw's double lamp in Complete)."""
+    if complete():
+        for i, part in enumerate(("base", "bottom", "middle", "top")):
+            b.set(x, y + i, z, "mcwlights:double_street_lamp", facing=arm, part=part, lit=True)
+        return
     for dy in range(height):
         b.set(x, y + dy, z, "minecraft:polished_deepslate_wall")
     ax, az = {"north": (0, -1), "south": (0, 1), "east": (1, 0), "west": (-1, 0)}[arm]

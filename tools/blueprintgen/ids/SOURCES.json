@@ -1,0 +1,132 @@
+{
+ "macaws-windows": {
+  "version": "2.4.2",
+  "file": "mcw-mcwwindows-2.4.2-mc1.21.1neoforge.jar",
+  "modid": "mcwwindows"
+ },
+ "macaws-roofs": {
+  "version": "2.3.2",
+  "file": "mcw-roofs-2.3.2-mc1.21.1neoforge.jar",
+  "modid": "mcwroofs"
+ },
+ "macaws-lights-and-lamps": {
+  "version": "1.1.5",
+  "file": "mcw-lights-1.1.5-mc1.21.1neoforge.jar",
+  "modid": "mcwlights"
+ },
+ "macaws-bridges": {
+  "version": "3.1.2",
+  "file": "mcw-bridges-3.1.2-mc1.21.1neoforge.jar",
+  "modid": "mcwbridges"
+ },
+ "macaws-paths-and-pavings": {
+  "version": "1.1.1",
+  "file": "mcw-mcwpaths-1.1.1-mc1.21.1neoforge.jar",
+  "modid": "mcwpaths"
+ },
+ "macaws-doors": {
+  "version": "1.1.5",
+  "file": "mcw-doors-1.1.5-mc1.21.1neoforge.jar",
+  "modid": "mcwdoors"
+ },
+ "macaws-fences-and-walls": {
+  "version": "1.2.1",
+  "file": "mcw-mcwfences-1.2.1-mc1.21.1neoforge.jar",
+  "modid": "mcwfences"
+ },
+ "macaws-furniture": {
+  "version": "3.4.1",
+  "file": "mcw-furniture-3.4.1-mc1.21.1neoforge.jar",
+  "modid": "mcwfurnitures"
+ },
+ "macaws-stairs": {
+  "version": "1.0.2",
+  "file": "mcw-mcwstairs-1.0.2-mc1.21.1neoforge.jar",
+  "modid": "mcwstairs"
+ },
+ "macaws-trapdoors": {
+  "version": "1.1.5",
+  "file": "mcw-trapdoors-1.1.5-mc1.21.1neoforge.jar",
+  "modid": "mcwtrpdoors"
+ },
+ "chipped": {
+  "version": "4.0.2",
+  "file": "chipped-neoforge-1.21.1-4.0.2.jar",
+  "modid": "chipped"
+ },
+ "tacz-1.21.1": {
+  "version": "1.1.8-hotfix-r7",
+  "file": "tacz-neoforge-1.21.1-1.1.8-hotfix-r7.jar",
+  "modid": "tacz"
+ },
+ "cold-sweat": {
+  "version": "2.4.5",
+  "file": "ColdSweat-2.4.5.jar",
+  "modid": "cold_sweat"
+ },
+ "create-tfmg": {
+  "version": "1.2.0",
+  "file": "tfmg-1.2.0.jar",
+  "modid": "tfmg"
+ },
+ "extended-ae": {
+  "version": "1.21-2.2.35-neoforge",
+  "file": "ExtendedAE-1.21-2.2.35-neoforge.jar",
+  "modid": "extendedae"
+ },
+ "create-diesel-generators": {
+  "version": "1.21.1-1.3.15",
+  "file": "createdieselgenerators-1.21.1-1.3.15.jar",
+  "modid": "createdieselgenerators"
+ },
+ "create-radars": {
+  "version": "5.0.3-1.21.1",
+  "file": "create_radar-5.0.3-1.21.1.jar",
+  "modid": "create_radar"
+ },
+ "createnuclear": {
+  "version": "2.0.0",
+  "file": "createnuclear-2.0.0-neoforge.jar",
+  "modid": "createnuclear"
+ },
+ "create-steam-n-rails-1.21.1": {
+  "version": "0.3.0-beta.2+neoforge-mc1.21.1",
+  "file": "railways-0.3.0-beta.2+neoforge-mc1.21.1.jar",
+  "modid": "railways"
+ },
+ "create-ore-excavation": {
+  "version": "1.21.1-1.6.8",
+  "file": "createoreexcavation-1.21-1.6.8.jar",
+  "modid": "createoreexcavation"
+ },
+ "applied-create": {
+  "version": "1.1.8",
+  "file": "appliedcreate-1.21.1-1.1.8.jar",
+  "modid": "appliedcreate"
+ },
+ "applied-generators": {
+  "version": "0.3.1+1.21.1",
+  "file": "applied-generators-0.3.1+1.21.1.jar",
+  "modid": "appgen"
+ },
+ "mega": {
+  "version": "4.11.0",
+  "file": "megacells-4.11.0.jar",
+  "modid": "megacells"
+ },
+ "appflux": {
+  "version": "1.21-2.1.5-neoforge",
+  "file": "AppliedFlux-1.21-2.1.5-neoforge.jar",
+  "modid": "appflux"
+ },
+ "advancedae": {
+  "version": "1.6.12-1.21.1",
+  "file": "AdvancedAE-1.6.12-1.21.1.jar",
+  "modid": "advanced_ae"
+ },
+ "create-new-age": {
+  "version": "1.2.0+mc1.21.1",
+  "file": "create-new-age-1.2.0+neoforge-mc1.21.1.jar",
+  "modid": "create_new_age"
+ }
+}

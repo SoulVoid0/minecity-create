@@ -8,14 +8,15 @@ blocks with working Create elevators, steel factories, AE2 data rooms, a power g
 |---|---|---|
 | **Modern City** | MineColonies + Create 6 + AE2 + Create Crafts & Additions | Full version with functional machinery |
 | **Modern City Lite** | MineColonies only | Same buildings, every modded block swapped for a vanilla look-alike |
+| **Modern City Complete** | Everything on the list (see `docs/DEPENDENCIES.md`) | Upgraded materials and furniture plus power plants (diesel, nuclear, solar), HV substation and pylons, AE2 data center, radar station, armory, ore excavation rig, oil pumpjack, train station, highway and rail bridges, 20-floor skyscraper, shopping mall |
 
-Only MineColonies/Structurize are hard dependencies; Structurize hides a pack whose mods are missing,
-so the Lite pack is always there and the full pack appears automatically when its mods are installed.
+Only MineColonies/Structurize are hard dependencies. Structurize hides a pack whose mods are missing,
+so Lite is always there and the bigger packs appear automatically when their mods are installed.
 
 ## What's in it so far
-Town hall, builder, residence (apartments, 2→10 floors), warehouse, courier, miner + all miner shaft
-nodes (levels 1–5 each), modern road tiles (straight, crosswalk, corner, T, intersection, dead end),
-street lights, power line pole and substation. See `docs/BLUEPRINTS.md` and `docs/PLAN.md`.
+All standard MineColonies huts except barracks, gatehouse, stable, plantation, graveyard, mystical site
+and nether worker, each at levels 1–5; miner shaft nodes; greenhouse fields; modern road tiles with street
+lights (traffic lights in Complete); power poles and substations; the Complete-only districts above. See `docs/BLUEPRINTS.md` and `docs/PLAN.md`.
 
 ## Building
 ```

@@ -21,6 +21,13 @@ public final class ModernCity {
     /** Mods the full "Modern City" pack needs; without them only "Modern City Lite" is offered. */
     public static final List<String> FULL_PACK_MODS = List.of("create", "ae2", "createaddition");
 
+    /** Extra mods the "Modern City Complete" pack needs on top of FULL_PACK_MODS. */
+    public static final List<String> COMPLETE_PACK_MODS = List.of(
+            "railways", "tfmg", "createdieselgenerators", "createnuclear", "create_radar", "createoreexcavation",
+            "create_new_age", "extendedae", "megacells", "advanced_ae", "appliedcreate", "appgen", "appflux",
+            "chipped", "tacz", "cold_sweat", "mcwbridges", "mcwdoors", "mcwfences", "mcwfurnitures", "mcwlights",
+            "mcwpaths", "mcwroofs", "mcwstairs", "mcwtrpdoors", "mcwwindows");
+
     public ModernCity(IEventBus modBus) {
         modBus.addListener(this::commonSetup);
     }
@@ -31,6 +38,12 @@ public final class ModernCity {
             LOG.info("[Modern City] full pack available");
         } else {
             LOG.info("[Modern City] {} not installed, only the Modern City Lite style pack is offered", missing);
+        }
+        List<String> missingComplete = COMPLETE_PACK_MODS.stream().filter(id -> !ModList.get().isLoaded(id)).toList();
+        if (missing.isEmpty() && missingComplete.isEmpty()) {
+            LOG.info("[Modern City] Complete pack available");
+        } else if (!missingComplete.isEmpty()) {
+            LOG.info("[Modern City] Complete pack hidden, missing: {}", missingComplete);
         }
     }
 }

@@ -20,11 +20,14 @@ import nbtlib  # noqa: E402
 import buildings  # noqa: E402
 import infrastructure  # noqa: E402
 import compat  # noqa: E402
+import complete  # noqa: E402
+import kit  # noqa: E402
 from bp import PACK_NAME  # noqa: E402
 
 PACKS_DIR = os.path.normpath(os.path.join(HERE, "..", "..", "src", "main", "resources", "blueprints", "moderncity"))
 ROOT = os.path.join(PACKS_DIR, "modern_city")
 LITE_ROOT = os.path.join(PACKS_DIR, "modern_city_lite")
+COMPLETE_ROOT = os.path.join(PACKS_DIR, "modern_city_complete")
 DOCS = os.path.normpath(os.path.join(HERE, "..", "..", "docs"))
 
 VERIFIED = {}
@@ -164,6 +167,21 @@ def main():
     write_pack(bps, args.out, PACK_NAME, args.check,
                "Modular modern city: glass towers, apartments with Create elevators, steel factories, "
                "AE2 data rooms, power grid, roads and street lights.")
+    kit.TIER = "complete"
+    full_bps = bps
+    cbps = [complete.upgrade(b) for b in collect()] + complete.districts()
+    kit.TIER = "full"
+    cproblems, cused = validate_ids(cbps)
+    if cproblems:
+        print("\n".join(cproblems))
+        sys.exit("unverified block ids in the Complete pack, refusing to write")
+    for k, v in cused.items():
+        used.setdefault(k, set()).update(v)
+    write_pack(cbps, COMPLETE_ROOT, complete.PACK_NAME, args.check,
+               "Modern City with every supported mod: Macaw's, Chipped, TFMG, Diesel Generators, Create Nuclear, "
+               "Radars, Steam 'n' Rails, Ore Excavation, ExtendedAE, MEGA, AdvancedAE, Applied Create/Generators/Flux, "
+               "TaCZ, Cold Sweat. Adds power plants, data center, radar, armory, rail station, bridges, skyscraper, mall.")
+    bps = full_bps
     lite = [compat.to_lite(b) for b in bps]
     write_pack(lite, LITE_ROOT, compat.LITE_PACK_NAME, args.check,
                "Modern City using only Minecraft + MineColonies blocks. Works in any modpack; "
