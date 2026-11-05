@@ -252,3 +252,136 @@ def fields():
         b.set(c + 1, 0, c, "minecraft:water")
         out.append(b)
     return out
+
+
+# ---------------------------------------------------------------- supply camp / ship
+# MineColonies' Supply Camp and Supply Ship items load decorations/supplies/supplycamp and
+# supplyship from the selected style pack; without them the placement preview stays empty.
+# Placement rules (ItemSupplyCampDeployer / ItemSupplyChestDeployer): every layer below the
+# groundlevel tag must be solid ground (camp) or water (ship), and the layer above must be clear.
+SUPPLY_TOOLS = [("minecraft:wooden_shovel", 1), ("minecraft:wooden_pickaxe", 1), ("minecraft:wooden_axe", 1),
+                ("minecraft:wooden_hoe", 1), ("structurize:caliper", 1)]
+SUPPLY_BUILD = [("minecraft:cobblestone", 32), ("minecraft:cobblestone", 32), ("minecraft:oak_log", 16),
+                ("minecraft:oak_sapling", 4), ("minecraft:birch_sapling", 4), ("minecraft:torch", 16)]
+SUPPLY_FOOD = [("minecraft:bread", 64), ("minecraft:cooked_beef", 16), ("minecraft:baked_potato", 32),
+               ("minecraft:apple", 16)]
+SUPPLY_START = [("structurize:sceptergold", 1), ("minecolonies:blockhuttownhall", 1)]
+
+
+def _supply_racks(b, x, y, z, facing, step):
+    """Four racks in a row: town hall + build tool, tools, building materials, food."""
+    dx, dz = step
+    for i, items in enumerate((SUPPLY_START, SUPPLY_TOOLS, SUPPLY_BUILD, SUPPLY_FOOD)):
+        b.rack(x + i * dx, y, z + i * dz, facing=facing, items=items)
+
+
+@infra
+def supplies():
+    # ---- supply camp: a fenced construction site with a site-office container
+    c = Blueprint(name="supplycamp", folder="decorations/supplies", sx=17, sy=8, sz=15)
+    c.fill(0, 0, 0, 16, 0, 14, "minecraft:gray_concrete")
+    c.fill(0, 1, 0, 16, 7, 14, AIR)
+    for x in range(0, 17):
+        for z in (0, 14):
+            if x % 4 == 0:
+                c.set(x, 1, z, "minecraft:stone_brick_wall")
+            else:
+                c.set(x, 1, z, "minecraft:iron_bars")
+    for z in range(1, 14):
+        c.set(0, 1, z, "minecraft:iron_bars" if z % 4 else "minecraft:stone_brick_wall")
+    for z in range(1, 14):
+        if z not in (6, 7, 8):  # site entrance on the east side
+            c.set(16, 1, z, "minecraft:iron_bars" if z % 4 else "minecraft:stone_brick_wall")
+    # site office container (x 1..8, z 1..6)
+    c.fill(1, 0, 1, 8, 0, 6, "minecraft:smooth_stone")
+    for (x, z) in kit._perimeter(1, 1, 8, 6):
+        for y in (1, 2, 3):
+            corner = x in (1, 8) and z in (1, 6)
+            c.set(x, y, z, "minecraft:white_concrete" if corner or y != 2 else "minecraft:glass_pane")
+    c.fill(1, 4, 1, 8, 4, 6, "minecraft:light_gray_concrete")
+    c.fill(2, 4, 2, 7, 4, 5, "minecraft:smooth_stone_slab", type="bottom")
+    c.set(5, 1, 6, "minecraft:dark_oak_door", facing="south", half="lower", hinge="left", open=False, powered=False)
+    c.set(5, 2, 6, "minecraft:dark_oak_door", facing="south", half="upper", hinge="left", open=False, powered=False)
+    _supply_racks(c, 2, 1, 2, "south", (1, 0))
+    c.bed(7, 1, 2, "north", color="light_gray")
+    c.set(6, 1, 2, "minecraft:crafting_table")
+    c.set(2, 1, 5, "minecraft:furnace", facing="east", lit=False)
+    c.set(3, 3, 3, "minecraft:sea_lantern")
+    c.set(6, 3, 4, "minecraft:sea_lantern")
+    # yard: fire pit, workbench, material pallets, flood lights
+    c.set(12, 1, 10, "minecraft:campfire", facing="north", lit=True, signal_fire=False, waterlogged=False,
+          te={"id": "minecraft:campfire"})
+    for (x, z) in ((11, 9), (13, 9), (11, 11), (13, 11)):
+        c.set(x, 1, z, "minecraft:polished_andesite_stairs", facing="north" if z == 11 else "south",
+              half="bottom", shape="straight", waterlogged=False)
+    c.set(12, 1, 2, "minecraft:smithing_table")
+    c.set(13, 1, 2, "minecraft:stonecutter", facing="south")
+    for (x, z) in ((10, 4), (11, 4), (10, 5)):
+        c.set(x, 1, z, "minecraft:spruce_slab", type="bottom", waterlogged=False)
+    c.set(10, 2, 4, "minecraft:stone_bricks")
+    c.set(11, 2, 4, "minecraft:bricks")
+    kit.street_light(c, 15, 1, 1, arm="west")
+    kit.street_light(c, 1, 1, 13, arm="east")
+    c.marker(12, 1, 7)
+    c.tag(12, 0, 7, "groundlevel")  # one ground layer under the camp
+    out = [c]
+
+    # ---- supply ship: a small cargo barge with containers and a stern wheelhouse
+    W, L = 11, 28
+    s = Blueprint(name="supplyship", folder="decorations/supplies", sx=W, sy=12, sz=L)
+    hull, stripe, deck = "minecraft:black_concrete", "minecraft:red_concrete", "minecraft:gray_concrete"
+
+    def width_at(z):  # tapered bow at z = 0..3
+        return {0: 3, 1: 2, 2: 1}.get(z, 0)
+
+    for z in range(L):
+        inset = width_at(z)
+        x1, x2 = inset, W - 1 - inset
+        for y in range(0, 4):
+            ins = inset + (1 if y == 0 else 0)
+            a, bb = ins, W - 1 - ins
+            if a > bb:
+                continue
+            for x in range(a, bb + 1):
+                edge = x in (a, bb) or z in (0, L - 1) or y == 0 or (z <= 3 and x in (x1, x2))
+                if y in (1,) or edge:
+                    s.set(x, y, z, stripe if (y == 3 and edge) else hull)
+                else:
+                    s.set(x, y, z, AIR)
+        s.fill(x1, 4, z, x2, 4, z, deck)
+        s.fill(x1, 5, z, x2, 11, z, AIR)
+        s.set(x1, 5, z, "minecraft:iron_bars")
+        s.set(x2, 5, z, "minecraft:iron_bars")
+    s.fill(3, 5, 0, 7, 5, 0, "minecraft:iron_bars")
+    for z in range(4, L - 4, 3):
+        s.set(W // 2, 3, z, "minecraft:sea_lantern")
+    # deck cargo: shipping containers (2 wide x 2 tall x 4 long)
+    for (x, z, col) in ((2, 5, "minecraft:orange_concrete"), (6, 5, "minecraft:blue_concrete"),
+                        (2, 10, "minecraft:white_concrete"), (6, 10, "minecraft:lime_concrete")):
+        s.fill(x, 5, z, x + 2, 6, z + 3, col)
+    s.fill(2, 7, 5, 4, 8, 8, "minecraft:cyan_concrete")
+    # wheelhouse (z 16..25)
+    zw1, zw2 = 16, 25
+    for (x, z) in kit._perimeter(1, zw1, W - 2, zw2):
+        for y in (5, 6, 7):
+            corner = x in (1, W - 2) and z in (zw1, zw2)
+            s.set(x, y, z, "minecraft:white_concrete" if corner or y == 5 else "minecraft:glass_pane")
+    s.fill(1, 8, zw1, W - 2, 8, zw2, "minecraft:light_gray_concrete")
+    s.fill(2, 4, zw1 + 1, W - 3, 4, zw2 - 1, "minecraft:smooth_stone")
+    s.set(W // 2, 5, zw1, "minecraft:dark_oak_door", facing="north", half="lower", hinge="left", open=False, powered=False)
+    s.set(W // 2, 6, zw1, "minecraft:dark_oak_door", facing="north", half="upper", hinge="left", open=False, powered=False)
+    _supply_racks(s, 2, 5, zw1 + 2, "east", (0, 1))
+    s.bed(8, 5, zw2 - 2, "south", color="blue")
+    s.bed(7, 5, zw2 - 2, "south", color="blue")
+    s.set(8, 5, zw1 + 2, "minecraft:crafting_table")
+    s.set(8, 5, zw1 + 3, "minecraft:furnace", facing="west", lit=False)
+    s.set(4, 8, zw1 + 4, "minecraft:sea_lantern")
+    s.set(6, 8, zw2 - 3, "minecraft:sea_lantern")
+    # mast with a nav light on the wheelhouse roof
+    for y in range(9, 11):
+        s.set(W // 2, y, zw2 - 1, "minecraft:polished_deepslate_wall")
+    s.set(W // 2, 11, zw2 - 1, "minecraft:lantern", hanging=False, waterlogged=False)
+    s.marker(W // 2, 5, 13)
+    s.tag(W // 2, 3, 13, "groundlevel")  # four water layers (y 0..3) under the deck
+    out.append(s)
+    return out

@@ -35,7 +35,7 @@ for fn in os.listdir(os.path.join(HERE, "ids")):
     ns = fn.replace("_blocks.txt", "")
     VERIFIED[ns] = set(open(os.path.join(HERE, "ids", fn)).read().split())
 VERIFIED["minecolonies"] |= {"blockminecoloniesrack"}
-STRUCTURIZE = {"blocksubstitution", "blocksolidsubstitution", "blockfluidsubstitution"}
+STRUCTURIZE = {"blocksubstitution", "blocksolidsubstitution", "blockfluidsubstitution", "blocktagsubstitution"}
 
 CATEGORY_COLORS = {
     "fundamentals": (70, 130, 180), "craftsmanship": (205, 133, 63), "infrastructure": (90, 90, 90),
@@ -97,7 +97,8 @@ def check_file(path):
         if "blueprintDataProvider" in te:
             idx = blocks[(y * sz + z) * sx + x]
             hut = str(tag["palette"][idx]["Name"])
-            assert hut.startswith("minecolonies:blockhut"), f"{path}: hut TE not on a hut block ({hut})"
+            assert hut.startswith("minecolonies:blockhut") or hut == "structurize:blocktagsubstitution", \
+                f"{path}: anchor TE not on a hut/tag block ({hut})"
             off = tag["optional_data"]["structurize"]["primary_offset"]
             assert (int(off["x"]), int(off["y"]), int(off["z"])) == (x, y, z), f"{path}: anchor mismatch"
             c1 = te["blueprintDataProvider"]["corner1"]

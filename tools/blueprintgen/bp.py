@@ -19,6 +19,7 @@ PACK_NAME = "Modern City"
 AIR = "minecraft:air"
 KEEP = "structurize:blocksubstitution"        # leave whatever is in the world
 FILL = "structurize:blocksolidsubstitution"   # fill with a solid block if the world has air/fluid
+TAG_ANCHOR = "structurize:blocktagsubstitution"  # invisible anchor carrying tags (non-hut blueprints)
 
 
 def state(spec: str, **props) -> tuple:
@@ -93,9 +94,23 @@ class Blueprint:
         self.anchor = (x, y, z)
         self.hut_te_id = te_id
 
-    def rack(self, x, y, z, facing="north", variant="blockrackempty"):
-        self.set(x, y, z, "minecolonies:blockminecoloniesrack", variant=variant, facing=facing,
-                 te={"id": "minecolonies:rack"})
+    def marker(self, x, y, z, *tags):
+        """Anchor for a blueprint without a hut (supply camp/ship): an invisible tag-substitution block."""
+        self.set(x, y, z, TAG_ANCHOR)
+        self.anchor = (x, y, z)
+        self.hut_te_id = "structurize:tagsubstitution"
+        self.hut_tags = ["invisible", *tags]
+
+    def rack(self, x, y, z, facing="north", variant="blockrackempty", items=()):
+        """Rack; items is a list of (item_id, count) put in its first slots."""
+        te = {"id": "minecolonies:rack"}
+        if items:
+            inv = [Compound({"id": String(i), "Count": Byte(c)}) for i, c in items]
+            inv += [Compound({"empty": Byte(1)}) for _ in range(27 - len(inv))]
+            te["inventory"] = List[Compound](inv)
+            te["version"] = Byte(0)
+            variant = "blockrackfull" if variant == "blockrackempty" else variant
+        self.set(x, y, z, "minecolonies:blockminecoloniesrack", variant=variant, facing=facing, te=te)
 
     def bed(self, x, y, z, facing, color="white"):
         """Bed whose head is at (x,y,z); foot is one block opposite to facing."""
@@ -140,6 +155,11 @@ class Blueprint:
             "pack": String(self.pack_name),
             "path": String(self.path),
         })
+        if self.hut_te_id == "structurize:tagsubstitution":
+            provider["pack"] = String("")
+            provider["path"] = String("")
+            return Compound({"id": String(self.hut_te_id), "x": Short(ax), "y": Short(ay), "z": Short(az),
+                             "blueprintDataProvider": provider})
         return Compound({
             "id": String(self.hut_te_id),
             "x": Short(ax), "y": Short(ay), "z": Short(az),

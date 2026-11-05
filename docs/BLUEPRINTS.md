@@ -229,3 +229,5 @@ Regenerate with `python3 tools/blueprintgen/gen.py --check`.
 | `infrastructure/fields/greenhouse_small.blueprint` | 9×7×9 | minecolonies |
 | `infrastructure/fields/greenhouse.blueprint` | 11×7×11 | minecolonies |
 | `infrastructure/fields/greenhouse_large.blueprint` | 15×7×15 | minecolonies |
+| `decorations/supplies/supplycamp.blueprint` | 17×8×15 | minecolonies |
+| `decorations/supplies/supplyship.blueprint` | 11×12×28 | minecolonies |
