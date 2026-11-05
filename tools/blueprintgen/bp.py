@@ -221,6 +221,7 @@ class Blueprint:
         os.makedirs(os.path.dirname(out), exist_ok=True)
         buf = io.BytesIO()
         nbtlib.File(self.to_nbt()).write(buf)  # big-endian, unnamed root like NbtIo
-        with gzip.open(out, "wb") as fh:
+        # mtime=0 and no file name in the header keep output byte-identical between runs
+        with open(out, "wb") as raw, gzip.GzipFile(filename="", mode="wb", fileobj=raw, mtime=0) as fh:
             fh.write(buf.getvalue())
         return out
